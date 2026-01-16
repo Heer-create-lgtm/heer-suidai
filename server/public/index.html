@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIDAI Analytics Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🆔</span>
+                <h1>UIDAI Analytics Dashboard</h1>
+            </div>
+            <p class="subtitle">Aadhaar Data Intelligence Platform</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <span class="status-item">
+                    <span class="status-dot online"></span>
+                    Backend: <span id="backend-status">Checking...</span>
+                </span>
+                <span class="status-item">
+                    <span class="status-dot offline"></span>
+                    ML Backend: <span id="ml-status">Checking...</span>
+                </span>
+            </div>
+
+            <!-- Feature Cards Grid -->
+            <section class="features-section">
+                <h2>📊 Analytics Features</h2>
+                <div class="features-grid">
+                    <!-- Dashboard -->
+                    <div class="feature-card" onclick="loadFeature('dashboard')">
+                        <div class="feature-icon">📈</div>
+                        <h3>Dashboard</h3>
+                        <p>Overview of enrollment statistics and key metrics</p>
+                    </div>
+
+                    <!-- Hotspots -->
+                    <div class="feature-card" onclick="loadFeature('hotspots')">
+                        <div class="feature-icon">🗺️</div>
+                        <h3>Geographic Hotspots</h3>
+                        <p>Gi* spatial analysis and coverage mapping</p>
+                    </div>
+
+                    <!-- Anomalies -->
+                    <div class="feature-card" onclick="loadFeature('anomalies')">
+                        <div class="feature-icon">⚠️</div>
+                        <h3>Anomaly Detection</h3>
+                        <p>ML-powered fraud and anomaly alerts</p>
+                    </div>
+
+                    <!-- Gender Tracker -->
+                    <div class="feature-card" onclick="loadFeature('gender')">
+                        <div class="feature-icon">👥</div>
+                        <h3>Gender Tracker</h3>
+                        <p>Gender inclusion gap analysis</p>
+                    </div>
+
+                    <!-- Risk Predictor -->
+                    <div class="feature-card" onclick="loadFeature('risk')">
+                        <div class="feature-icon">🔮</div>
+                        <h3>Risk Predictor</h3>
+                        <p>Biometric re-enrollment risk prediction</p>
+                    </div>
+
+                    <!-- Enrollment Forecast -->
+                    <div class="feature-card" onclick="loadFeature('forecast')">
+                        <div class="feature-icon">📅</div>
+                        <h3>Enrollment Forecast</h3>
+                        <p>Time-series enrollment predictions</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Sources Section -->
+            <section class="data-section">
+                <h2>📁 Data Sources</h2>
+                <div class="data-grid">
+                    <div class="data-card" onclick="loadData('enrolment')">
+                        <h4>📋 Enrolment Data</h4>
+                        <p>Monthly enrollment by state, district, age groups</p>
+                        <span class="data-badge">API 1</span>
+                    </div>
+                    <div class="data-card" onclick="loadData('demographic')">
+                        <h4>👤 Demographic Updates</h4>
+                        <p>Demographic update statistics</p>
+                        <span class="data-badge">API 2</span>
+                    </div>
+                    <div class="data-card" onclick="loadData('biometric')">
+                        <h4>🖐️ Biometric Updates</h4>
+                        <p>Biometric update records</p>
+                        <span class="data-badge">API 3</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Display Area -->
+            <section class="results-section" id="results-section">
+                <div class="results-header">
+                    <h2 id="results-title">📊 Results</h2>
+                    <button class="btn-close" onclick="clearResults()">✕ Close</button>
+                </div>
+                <div class="results-content" id="results-content">
+                    <p class="placeholder">Select a feature or data source above to view results.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>UIDAI Data Hackathon 2026 | Built with ❤️ for Digital India</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
