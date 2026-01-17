@@ -178,6 +178,53 @@ app.get('/forecast-dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'forecast-dashboard.html'));
 });
 
+// Serve Rush Period Dashboard
+app.get('/rush-dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'rush-dashboard.html'));
+});
+
+// Rush Period API Proxy
+app.get('/api/rush/states', async (req, res) => {
+  try {
+    const response = await axios.get(`${ML_BACKEND_URL}/api/rush/states`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(503).json({ states: [], error: error.message });
+  }
+});
+
+app.get('/api/rush/districts/:state', async (req, res) => {
+  try {
+    const response = await axios.get(`${ML_BACKEND_URL}/api/rush/districts/${encodeURIComponent(req.params.state)}`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(503).json({ districts: [], error: error.message });
+  }
+});
+
+app.get('/api/rush/analyze/:state/:district', async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${ML_BACKEND_URL}/api/rush/analyze/${encodeURIComponent(req.params.state)}/${encodeURIComponent(req.params.district)}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(503).json({ error: error.message });
+  }
+});
+
+app.get('/api/rush/predict/:state/:district', async (req, res) => {
+  try {
+    const days = req.query.days || 30;
+    const response = await axios.get(
+      `${ML_BACKEND_URL}/api/rush/predict/${encodeURIComponent(req.params.state)}/${encodeURIComponent(req.params.district)}?days=${days}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(503).json({ error: error.message });
+  }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });

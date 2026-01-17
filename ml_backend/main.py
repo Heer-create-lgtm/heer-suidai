@@ -90,20 +90,23 @@ app.mount("/static", StaticFiles(directory=OUTPUT_DIR), name="static")
 
 # Try to include routers - handle both old and new structures
 try:
-    from api.routes import datasets, analysis, visualizations, selection, reports, policy_api, monitor, forecast
+    from api.routes import datasets, analysis, visualizations, selection, reports, policy_api, monitor, forecast, rush
     # Monitoring API - Primary auditor-facing interface
     app.include_router(monitor.router, tags=["Monitoring"])
     # Policy API - Government-facing policy controls
     app.include_router(policy_api.router, prefix="/api/policy", tags=["Policy Engine"])
     # Forecast API - Time-series enrollment forecasting
     app.include_router(forecast.router, tags=["Enrollment Forecasting"])
+    # Rush Period API - Peak day prediction
+    app.include_router(rush.router, tags=["Rush Period Prediction"])
     # Internal APIs
     app.include_router(datasets.router, prefix="/api/ml", tags=["Internal - Datasets"])
     app.include_router(selection.router, prefix="/api/ml", tags=["Internal - Selection"])
     app.include_router(analysis.router, prefix="/api/ml", tags=["Internal - Analysis"])
     app.include_router(visualizations.router, prefix="/api/ml", tags=["Internal - Visualizations"])
     app.include_router(reports.router, prefix="/api/ml", tags=["Internal - Reports"])
-except ImportError:
+except ImportError as e:
+    logger.warning(f"Could not import all routers: {e}")
     # Fallback to old router structure
     from routers import datasets, analysis, visualizations
     app.include_router(datasets.router, prefix="/api", tags=["Datasets"])

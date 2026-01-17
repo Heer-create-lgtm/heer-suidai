@@ -9,16 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --accent: #00d4ff;
-            --accent-glow: 0 0 30px rgba(0, 212, 255, 0.3);
-            --success: #00ff88;
-            --warning: #ffa726;
-            --danger: #ff6b6b;
-            --text: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.6);
+            --bg-primary: #f8f9fa;
+            --bg-white: #ffffff;
+            --card-border: #e0e0e0;
+            --accent: #1a73e8;
+            --accent-dark: #1557b0;
+            --success: #34a853;
+            --warning: #fbbc04;
+            --danger: #ea4335;
+            --text: #202124;
+            --text-muted: #5f6368;
+            --shadow: 0 1px 3px rgba(60, 64, 67, 0.15), 0 1px 2px rgba(60, 64, 67, 0.1);
+            --shadow-hover: 0 4px 12px rgba(60, 64, 67, 0.2);
         }
 
         * {
@@ -29,178 +31,155 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-gradient);
+            background: var(--bg-primary);
             color: var(--text);
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
         }
 
         .header {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            padding: 20px 40px;
+            background: var(--bg-white);
+            padding: 16px 32px;
             border-bottom: 1px solid var(--card-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
+            box-shadow: var(--shadow);
         }
 
         .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), var(--success));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .header h1::before {
-            content: '🗺️';
-            font-size: 32px;
+            content: '📊';
+            font-size: 24px;
         }
 
         .model-badge {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .badge {
-            background: var(--card-bg);
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: var(--bg-primary);
+            padding: 6px 12px;
+            border-radius: 16px;
             font-size: 12px;
             font-weight: 500;
             border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
+            color: var(--text-muted);
         }
 
         .badge.accent {
-            border-color: var(--accent);
+            background: #e8f0fe;
             color: var(--accent);
+            border-color: #c6dafc;
         }
 
         .badge.success {
-            border-color: var(--success);
+            background: #e6f4ea;
             color: var(--success);
+            border-color: #ceead6;
         }
 
         .controls {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px 40px;
+            background: var(--bg-white);
+            padding: 12px 32px;
             display: flex;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
             flex-wrap: wrap;
+            border-bottom: 1px solid var(--card-border);
         }
 
         .controls select {
-            padding: 12px 20px;
-            background: var(--card-bg);
-            color: white;
+            padding: 10px 16px;
+            background: var(--bg-white);
+            color: var(--text);
             border: 1px solid var(--card-border);
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             min-width: 200px;
-            backdrop-filter: blur(10px);
         }
 
-        .controls select:hover {
-            border-color: var(--accent);
+        .controls select:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: -1px;
         }
 
         .controls button {
-            padding: 12px 24px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             font-size: 14px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), #0099cc);
+            background: var(--accent);
             color: white;
-            box-shadow: var(--accent-glow);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+            background: var(--accent-dark);
         }
 
         .btn-secondary {
-            background: linear-gradient(135deg, var(--warning), #ff7043);
-            color: white;
+            background: var(--warning);
+            color: #1f1f1f;
+        }
+
+        .btn-secondary:hover {
+            background: #f9a825;
         }
 
         .dashboard {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-            padding: 25px 40px;
-            max-width: 1800px;
+            gap: 16px;
+            padding: 20px 32px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
         .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 20px;
             border: 1px solid var(--card-border);
-            backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.2s ease;
         }
 
         .card:hover {
-            border-color: rgba(0, 212, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-hover);
         }
 
         .card-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card-title::before {
-            content: '';
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(180deg, var(--accent), var(--success));
-            border-radius: 2px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
         }
 
         /* Layout */
         .geo-chart {
             grid-column: span 7;
-            min-height: 500px;
+            min-height: 480px;
         }
 
         .summary-metrics {
@@ -223,21 +202,21 @@
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 12px;
         }
 
         .metric-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            padding: 16px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #eee;
         }
 
         .metric-value {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .metric-value.accent {
@@ -249,7 +228,7 @@
         }
 
         .metric-value.warning {
-            color: var(--warning);
+            color: #e37400;
         }
 
         .metric-value.danger {
@@ -257,25 +236,26 @@
         }
 
         .metric-label {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         /* Scenarios */
         .scenario-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            border: 1px solid #eee;
         }
 
         .scenario-icon {
-            font-size: 28px;
+            font-size: 24px;
         }
 
         .scenario-details {
@@ -283,14 +263,15 @@
         }
 
         .scenario-name {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            color: var(--text);
         }
 
         .scenario-bar {
             height: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: #e8eaed;
             border-radius: 4px;
             overflow: hidden;
         }
@@ -302,45 +283,49 @@
         }
 
         .scenario-fill.pessimistic {
-            background: linear-gradient(90deg, var(--danger), #ff8a80);
+            background: var(--danger);
         }
 
         .scenario-fill.baseline {
-            background: linear-gradient(90deg, var(--accent), #66d9ff);
+            background: var(--accent);
         }
 
         .scenario-fill.optimistic {
-            background: linear-gradient(90deg, var(--success), #69f0ae);
+            background: var(--success);
         }
 
         .scenario-value {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text);
         }
 
-        /* Loading */
-        .loading {
+        .info-box {
+            margin-top: 16px;
+            padding: 12px;
+            background: #e8f0fe;
+            border-radius: 8px;
+            border: 1px solid #c6dafc;
+        }
+
+        .info-row {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 300px;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row .label {
             color: var(--text-muted);
         }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .info-row .value {
+            font-weight: 600;
+            color: var(--text);
         }
 
         /* Responsive */
@@ -355,12 +340,12 @@
             }
 
             .dashboard {
-                padding: 15px;
+                padding: 16px;
             }
 
             .header,
             .controls {
-                padding: 15px 20px;
+                padding: 12px 16px;
             }
         }
     </style>
@@ -379,19 +364,19 @@
     <div class="controls">
         <select id="state-select"></select>
         <button class="btn-primary" onclick="updateDashboard()">🔄 Update Forecast</button>
-        <button class="btn-secondary" onclick="trainModels()">🏋️ Retrain All Models</button>
+        <button class="btn-secondary" onclick="trainModels()">🏋️ Retrain Models</button>
     </div>
 
     <div class="dashboard">
-        <!-- Geo Chart - Enrollment by State -->
+        <!-- Geo Chart -->
         <div class="card geo-chart">
-            <div class="card-title">Predicted Enrollment Demand by State</div>
-            <div id="geo-chart" style="height: 450px;"></div>
+            <div class="card-title">📊 Predicted Enrollment Demand by State</div>
+            <div id="geo-chart" style="height: 430px;"></div>
         </div>
 
         <!-- Forecast Summary -->
         <div class="card summary-metrics">
-            <div class="card-title">Forecast Reliability Summary</div>
+            <div class="card-title">📈 Forecast Reliability Summary</div>
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-value accent" id="metric-forecast">-</div>
@@ -410,33 +395,31 @@
                     <div class="metric-label">RMSE</div>
                 </div>
             </div>
-            <div
-                style="margin-top: 20px; padding: 15px; background: rgba(0,212,255,0.1); border-radius: 12px; border: 1px solid rgba(0,212,255,0.2);">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: var(--text-muted);">Selected State:</span>
-                    <span id="selected-state" style="font-weight: 600; color: var(--accent);">-</span>
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="label">Selected State</span>
+                    <span class="value" id="selected-state">-</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: var(--text-muted);">Data Points:</span>
-                    <span id="data-points" style="font-weight: 600;">-</span>
+                <div class="info-row">
+                    <span class="label">Data Points</span>
+                    <span class="value" id="data-points">-</span>
                 </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="color: var(--text-muted);">Confidence:</span>
-                    <span style="font-weight: 600; color: var(--success);">95%</span>
+                <div class="info-row">
+                    <span class="label">Confidence Level</span>
+                    <span class="value" style="color: var(--success);">95%</span>
                 </div>
             </div>
         </div>
 
-        <!-- Time Series with Uncertainty -->
+        <!-- Time Series -->
         <div class="card timeseries">
-            <div class="card-title">Enrollment Forecast with Uncertainty Bands</div>
-            <div id="timeseries-chart" style="height: 350px;"></div>
+            <div class="card-title">📉 Enrollment Forecast with Uncertainty Bands</div>
+            <div id="timeseries-chart" style="height: 320px;"></div>
         </div>
 
         <!-- Scenarios -->
         <div class="card scenarios">
-            <div class="card-title">Enrollment Demand Scenarios</div>
-
+            <div class="card-title">🔮 Enrollment Demand Scenarios</div>
             <div class="scenario-item">
                 <span class="scenario-icon">📉</span>
                 <div class="scenario-details">
@@ -447,7 +430,6 @@
                 </div>
                 <div class="scenario-value" id="val-pessimistic">-</div>
             </div>
-
             <div class="scenario-item">
                 <span class="scenario-icon">📊</span>
                 <div class="scenario-details">
@@ -458,7 +440,6 @@
                 </div>
                 <div class="scenario-value" id="val-baseline">-</div>
             </div>
-
             <div class="scenario-item">
                 <span class="scenario-icon">📈</span>
                 <div class="scenario-details">
@@ -473,15 +454,14 @@
 
         <!-- Diagnostics -->
         <div class="card diagnostics">
-            <div class="card-title">ARIMA Residual Diagnostics</div>
-            <div id="diagnostics-chart" style="height: 250px;"></div>
+            <div class="card-title">🔬 ARIMA Residual Diagnostics</div>
+            <div id="diagnostics-chart" style="height: 220px;"></div>
         </div>
     </div>
 
     <script>
         const API_BASE = 'http://localhost:8000/api/forecast';
 
-        // All 28 States of India
         const INDIAN_STATES = [
             'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
             'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand',
@@ -494,10 +474,8 @@
         let allStatesData = null;
 
         async function init() {
-            // Populate state selector
             const select = document.getElementById('state-select');
             select.innerHTML = INDIAN_STATES.map(s => `<option value="${s}">${s}</option>`).join('');
-
             await loadAllStatesData();
             updateDashboard();
         }
@@ -509,9 +487,7 @@
                     allStatesData = await res.json();
                     document.getElementById('model-version').textContent = allStatesData.model_version || 'v2.0.0';
                 }
-            } catch (e) {
-                console.log('Loading state data failed, will use synthetic');
-            }
+            } catch (e) { console.log('Using synthetic data'); }
         }
 
         async function trainModels() {
@@ -519,20 +495,16 @@
                 document.body.style.cursor = 'wait';
                 const res = await fetch(`${API_BASE}/train/states`, { method: 'POST' });
                 const data = await res.json();
-                alert(`✅ Training Complete!\n\nStates Trained: ${data.trained_count}\nMAPE: ${data.metrics.avg_mape}%`);
+                alert(`✅ Training Complete!\n\nStates: ${data.trained_count}\nMAPE: ${data.metrics.avg_mape}%`);
                 await loadAllStatesData();
                 updateDashboard();
-            } catch (e) {
-                alert('Training failed. Make sure ML backend is running.');
-            } finally {
-                document.body.style.cursor = 'default';
-            }
+            } catch (e) { alert('Training failed.'); }
+            finally { document.body.style.cursor = 'default'; }
         }
 
         function updateDashboard() {
             const state = document.getElementById('state-select').value;
             document.getElementById('selected-state').textContent = state;
-
             updateGeoChart();
             updateMetrics(state);
             updateTimeseries(state);
@@ -541,7 +513,7 @@
         }
 
         function getStateData(state) {
-            if (!allStatesData || !allStatesData.states) return null;
+            if (!allStatesData?.states) return null;
             return allStatesData.states.find(s => s.state === state);
         }
 
@@ -552,58 +524,36 @@
         }
 
         function updateGeoChart() {
-            const values = [];
-            const states = [];
-
-            if (allStatesData && allStatesData.states) {
+            const values = [], states = [];
+            if (allStatesData?.states) {
                 allStatesData.states.forEach(s => {
-                    const avg = s.forecasts.reduce((sum, f) => sum + f.predicted_enrollment, 0) / 6;
-                    values.push(avg);
+                    values.push(s.forecasts.reduce((sum, f) => sum + f.predicted_enrollment, 0) / 6);
                     states.push(s.state);
                 });
             } else {
-                // Synthetic data for display
-                INDIAN_STATES.forEach(s => {
-                    values.push(Math.random() * 150000 + 50000);
-                    states.push(s);
-                });
+                INDIAN_STATES.forEach(s => { values.push(Math.random() * 150000 + 50000); states.push(s); });
             }
 
-            // Sort by value
-            const sorted = states.map((s, i) => ({ state: s, value: values[i] }))
-                .sort((a, b) => b.value - a.value);
+            const sorted = states.map((s, i) => ({ state: s, value: values[i] })).sort((a, b) => b.value - a.value);
 
-            const trace = {
-                type: 'bar',
-                y: sorted.map(s => s.state),
-                x: sorted.map(s => s.value),
-                orientation: 'h',
-                marker: {
-                    color: sorted.map((_, i) => `hsl(${180 + i * 5}, 70%, ${55 - i}%)`),
-                    line: { width: 0 }
-                },
+            Plotly.newPlot('geo-chart', [{
+                type: 'bar', orientation: 'h',
+                y: sorted.map(s => s.state), x: sorted.map(s => s.value),
+                marker: { color: sorted.map((_, i) => `hsl(${210 - i * 3}, 70%, ${50 + i}%)`) },
                 text: sorted.map(s => formatNumber(Math.round(s.value))),
                 textposition: 'outside',
-                hovertemplate: '<b>%{y}</b><br>Forecast: %{x:,.0f}<extra></extra>'
-            };
-
-            Plotly.newPlot('geo-chart', [trace], {
-                margin: { l: 150, r: 80, t: 20, b: 30 },
-                paper_bgcolor: 'transparent',
-                plot_bgcolor: 'transparent',
-                font: { color: 'rgba(255,255,255,0.8)', size: 11 },
-                xaxis: {
-                    tickformat: '.2s',
-                    gridcolor: 'rgba(255,255,255,0.05)',
-                    title: { text: 'Predicted Enrollments', font: { size: 12 } }
-                },
-                yaxis: { autorange: 'reversed', tickfont: { size: 11 } }
+                hovertemplate: '<b>%{y}</b><br>%{x:,.0f}<extra></extra>'
+            }], {
+                margin: { l: 140, r: 60, t: 10, b: 30 },
+                paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
+                font: { color: '#5f6368', size: 11 },
+                xaxis: { tickformat: '.2s', gridcolor: '#eee', title: { text: 'Enrollments', font: { size: 11 } } },
+                yaxis: { autorange: 'reversed' }
             }, { responsive: true, displayModeBar: false });
         }
 
         function updateMetrics(state) {
             const data = getStateData(state);
-
             if (data) {
                 const avg = data.forecasts.reduce((sum, f) => sum + f.predicted_enrollment, 0) / 6;
                 document.getElementById('metric-forecast').textContent = formatNumber(Math.round(avg));
@@ -622,34 +572,18 @@
 
         function updateTimeseries(state) {
             const data = getStateData(state);
-
-            let historical = [];
-            let forecast = [];
-            let upper = [];
-            let lower = [];
-
             const mean = data?.historical_stats?.mean || 100000;
             const std = data?.historical_stats?.std || 15000;
+            const seed = state.charCodeAt(0) + state.length;
 
-            // Generate realistic historical data with gradual trend and random walk
-            // State-specific seed for consistent patterns per state
-            const stateSeed = state.charCodeAt(0) + state.length;
-            let currentValue = mean - std * 0.5; // Start below mean
+            let historical = [], forecast = [], upper = [], lower = [];
 
             for (let i = 0; i < 6; i++) {
-                // Gradual upward trend with some volatility
-                const trend = i * std * 0.08; // Slight upward trend
-                const seasonality = Math.sin((i + stateSeed) * 0.8) * std * 0.15; // Seasonal pattern
-                const noise = ((((stateSeed * (i + 1) * 17) % 100) / 100) - 0.5) * std * 0.2; // Pseudo-random noise
-
-                currentValue = mean - std * 0.3 + trend + seasonality + noise;
-                historical.push(Math.max(currentValue, mean * 0.7)); // Floor at 70% of mean
-                forecast.push(null);
-                upper.push(null);
-                lower.push(null);
+                const val = mean - std * 0.3 + i * std * 0.08 + Math.sin((i + seed) * 0.8) * std * 0.15;
+                historical.push(Math.max(val, mean * 0.7));
+                forecast.push(null); upper.push(null); lower.push(null);
             }
 
-            // Forecast - either from API or realistic synthetic
             if (data?.forecasts) {
                 data.forecasts.forEach(f => {
                     historical.push(null);
@@ -658,106 +592,72 @@
                     lower.push(f.lower_bound);
                 });
             } else {
-                // Synthetic forecast continuing the trend
-                let lastHistorical = historical[5];
+                let last = historical[5];
                 for (let i = 0; i < 6; i++) {
                     historical.push(null);
-                    const growthRate = 1 + 0.015 * (i + 1); // 1.5% monthly growth
-                    const forecastVal = lastHistorical * growthRate + (((stateSeed * (i + 7)) % 50) - 25) * 100;
-                    const uncertainty = forecastVal * (0.02 + i * 0.008); // Growing uncertainty
-                    forecast.push(Math.round(forecastVal));
-                    upper.push(Math.round(forecastVal + uncertainty));
-                    lower.push(Math.round(forecastVal - uncertainty));
+                    const v = last * (1 + 0.015 * (i + 1));
+                    forecast.push(Math.round(v));
+                    upper.push(Math.round(v * 1.03 + i * 500));
+                    lower.push(Math.round(v * 0.97 - i * 500));
                 }
             }
 
             const labels = ['H6', 'H5', 'H4', 'H3', 'H2', 'H1', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6'];
 
-            const traces = [
-                { name: 'Upper CI', x: labels, y: upper, type: 'scatter', mode: 'lines', line: { width: 0 }, showlegend: false },
-                { name: 'Lower CI', x: labels, y: lower, type: 'scatter', mode: 'lines', fill: 'tonexty', fillcolor: 'rgba(0, 255, 136, 0.15)', line: { width: 0 }, showlegend: false },
-                { name: 'Historical', x: labels, y: historical, type: 'scatter', mode: 'lines+markers', line: { color: '#00d4ff', width: 3 }, marker: { size: 8, color: '#00d4ff' } },
-                { name: 'Forecast', x: labels, y: forecast, type: 'scatter', mode: 'lines+markers', line: { color: '#00ff88', width: 3, dash: 'dash' }, marker: { size: 10, color: '#00ff88', symbol: 'diamond' } }
-            ];
-
-            Plotly.newPlot('timeseries-chart', traces, {
-                margin: { l: 70, r: 30, t: 20, b: 50 },
-                paper_bgcolor: 'transparent',
-                plot_bgcolor: 'transparent',
-                font: { color: 'rgba(255,255,255,0.8)' },
-                xaxis: { gridcolor: 'rgba(255,255,255,0.05)', title: 'Period (H=Historical, F=Forecast)' },
-                yaxis: { gridcolor: 'rgba(255,255,255,0.05)', tickformat: ',.0f', title: 'Enrollments' },
-                legend: { orientation: 'h', y: -0.2 },
-                shapes: [{ type: 'line', x0: 5.5, x1: 5.5, y0: 0, y1: 1, yref: 'paper', line: { color: '#ff6b6b', width: 2, dash: 'dot' } }],
-                annotations: [{ x: 5.5, y: 1.05, xref: 'x', yref: 'paper', text: '← Historical | Forecast →', showarrow: false, font: { size: 11, color: '#ff6b6b' } }]
+            Plotly.newPlot('timeseries-chart', [
+                { x: labels, y: upper, type: 'scatter', mode: 'lines', line: { width: 0 }, showlegend: false },
+                { x: labels, y: lower, type: 'scatter', mode: 'lines', fill: 'tonexty', fillcolor: 'rgba(52, 168, 83, 0.15)', line: { width: 0 }, showlegend: false },
+                { name: 'Historical', x: labels, y: historical, type: 'scatter', mode: 'lines+markers', line: { color: '#1a73e8', width: 2 }, marker: { size: 6 } },
+                { name: 'Forecast', x: labels, y: forecast, type: 'scatter', mode: 'lines+markers', line: { color: '#34a853', width: 2, dash: 'dash' }, marker: { size: 8, symbol: 'diamond' } }
+            ], {
+                margin: { l: 65, r: 20, t: 10, b: 45 },
+                paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
+                font: { color: '#5f6368' },
+                xaxis: { gridcolor: '#eee', title: 'Period' },
+                yaxis: { gridcolor: '#eee', tickformat: ',.0f', title: 'Enrollments' },
+                legend: { orientation: 'h', y: -0.25 },
+                shapes: [{ type: 'line', x0: 5.5, x1: 5.5, y0: 0, y1: 1, yref: 'paper', line: { color: '#ea4335', width: 1.5, dash: 'dot' } }]
             }, { responsive: true, displayModeBar: false });
         }
 
         function updateScenarios(state) {
             const data = getStateData(state);
             const avg = data ? data.forecasts.reduce((sum, f) => sum + f.predicted_enrollment, 0) / 6 : 120000;
+            const pess = avg * 0.9, base = avg, opt = avg * 1.1;
 
-            const pessimistic = avg * 0.9;
-            const baseline = avg;
-            const optimistic = avg * 1.1;
-            const max = optimistic;
-
-            document.getElementById('bar-pessimistic').style.width = `${pessimistic / max * 100}%`;
-            document.getElementById('bar-baseline').style.width = `${baseline / max * 100}%`;
+            document.getElementById('bar-pessimistic').style.width = `${pess / opt * 100}%`;
+            document.getElementById('bar-baseline').style.width = `${base / opt * 100}%`;
             document.getElementById('bar-optimistic').style.width = '100%';
 
-            document.getElementById('val-pessimistic').textContent = formatNumber(Math.round(pessimistic));
-            document.getElementById('val-baseline').textContent = formatNumber(Math.round(baseline));
-            document.getElementById('val-optimistic').textContent = formatNumber(Math.round(optimistic));
+            document.getElementById('val-pessimistic').textContent = formatNumber(Math.round(pess));
+            document.getElementById('val-baseline').textContent = formatNumber(Math.round(base));
+            document.getElementById('val-optimistic').textContent = formatNumber(Math.round(opt));
         }
 
         function updateDiagnostics() {
-            const n = 30;
-            const residuals = Array.from({ length: n }, () => (Math.random() - 0.5) * 3000);
-            const acf = Array.from({ length: 15 }, (_, i) => Math.exp(-i * 0.3) * (Math.random() > 0.5 ? 1 : -1));
+            const residuals = Array.from({ length: 30 }, () => (Math.random() - 0.5) * 3000);
+            const acf = Array.from({ length: 15 }, (_, i) => Math.exp(-i * 0.3) * (Math.random() > 0.5 ? 1 : -1) * 0.8);
 
-            const traces = [
-                {
-                    name: 'Residuals',
-                    x: Array.from({ length: n }, (_, i) => i + 1),
-                    y: residuals,
-                    type: 'scatter',
-                    mode: 'lines+markers',
-                    line: { color: '#ffa726', width: 2 },
-                    marker: { size: 5 },
-                    xaxis: 'x',
-                    yaxis: 'y'
-                },
-                {
-                    name: 'ACF',
-                    x: Array.from({ length: 15 }, (_, i) => i),
-                    y: acf,
-                    type: 'bar',
-                    marker: { color: acf.map(v => v > 0 ? '#00d4ff' : '#ff6b6b') },
-                    xaxis: 'x2',
-                    yaxis: 'y2'
-                }
-            ];
-
-            Plotly.newPlot('diagnostics-chart', traces, {
+            Plotly.newPlot('diagnostics-chart', [
+                { x: Array.from({ length: 30 }, (_, i) => i + 1), y: residuals, type: 'scatter', mode: 'lines+markers', line: { color: '#e37400', width: 1.5 }, marker: { size: 4 }, xaxis: 'x', yaxis: 'y' },
+                { x: Array.from({ length: 15 }, (_, i) => i), y: acf, type: 'bar', marker: { color: acf.map(v => v > 0 ? '#1a73e8' : '#ea4335') }, xaxis: 'x2', yaxis: 'y2' }
+            ], {
                 grid: { rows: 1, columns: 2, pattern: 'independent' },
-                margin: { l: 60, r: 30, t: 30, b: 50 },
-                paper_bgcolor: 'transparent',
-                plot_bgcolor: 'transparent',
-                font: { color: 'rgba(255,255,255,0.8)' },
-                xaxis: { title: 'Observation', gridcolor: 'rgba(255,255,255,0.05)', domain: [0, 0.48] },
-                yaxis: { title: 'Residual', gridcolor: 'rgba(255,255,255,0.05)', zeroline: true, zerolinecolor: '#ff6b6b' },
-                xaxis2: { title: 'Lag', gridcolor: 'rgba(255,255,255,0.05)', domain: [0.52, 1] },
-                yaxis2: { title: 'ACF', gridcolor: 'rgba(255,255,255,0.05)', range: [-1, 1], anchor: 'x2' },
+                margin: { l: 55, r: 20, t: 25, b: 45 },
+                paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
+                font: { color: '#5f6368' },
+                xaxis: { title: 'Observation', gridcolor: '#eee', domain: [0, 0.48] },
+                yaxis: { title: 'Residual', gridcolor: '#eee', zeroline: true, zerolinecolor: '#ea4335' },
+                xaxis2: { title: 'Lag', gridcolor: '#eee', domain: [0.52, 1] },
+                yaxis2: { title: 'ACF', gridcolor: '#eee', range: [-1, 1], anchor: 'x2' },
                 showlegend: false,
                 annotations: [
-                    { x: 0.24, y: 1.1, xref: 'paper', yref: 'paper', text: 'Residual Plot', showarrow: false, font: { size: 13, color: '#ffa726' } },
-                    { x: 0.76, y: 1.1, xref: 'paper', yref: 'paper', text: 'Autocorrelation', showarrow: false, font: { size: 13, color: '#00d4ff' } }
+                    { x: 0.24, y: 1.1, xref: 'paper', yref: 'paper', text: 'Residual Plot', showarrow: false, font: { size: 12, color: '#e37400' } },
+                    { x: 0.76, y: 1.1, xref: 'paper', yref: 'paper', text: 'Autocorrelation', showarrow: false, font: { size: 12, color: '#1a73e8' } }
                 ]
             }, { responsive: true, displayModeBar: false });
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', init);
         document.getElementById('state-select')?.addEventListener('change', updateDashboard);
     </script>

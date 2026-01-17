@@ -59,7 +59,7 @@ class DataIngestion:
         url = f"{self.base_url}/{resource_id}"
         
         try:
-            async with httpx.AsyncClient(timeout=30.0) as client:
+            async with httpx.AsyncClient(timeout=60.0) as client:
                 response = await client.get(url, params=params)
                 response.raise_for_status()
                 data = response.json()
@@ -139,7 +139,7 @@ class DataIngestion:
         return pd.DataFrame(records)
 
 
-# Singleton instance
+# Singleton instance - reset on module reload to pick up new config
 _ingestion_instance: Optional[DataIngestion] = None
 
 
@@ -147,5 +147,16 @@ def get_data_ingestion() -> DataIngestion:
     """Get or create DataIngestion singleton."""
     global _ingestion_instance
     if _ingestion_instance is None:
+        # Clear lru_cache on settings to get fresh config
+        from config import get_settings
+        get_settings.cache_clear()
         _ingestion_instance = DataIngestion()
     return _ingestion_instance
+
+
+def reset_data_ingestion():
+    """Reset the singleton to pick up new config (e.g. API key change)."""
+    global _ingestion_instance
+    from config import get_settings
+    get_settings.cache_clear()
+    _ingestion_instance = None

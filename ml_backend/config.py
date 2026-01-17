@@ -19,7 +19,7 @@ from functools import lru_cache
 load_dotenv()
 
 # data.gov.in API Configuration
-DATA_GOV_API_KEY = os.getenv("DATA_GOV_API_KEY", "579b464db66ec23bdd0000015cfbfd5b9e5a4b366992c1f538e4a2b8")
+DATA_GOV_API_KEY = os.getenv("DATA_GOV_API_KEY", "579b464db66ec23bdd00000107b605eca2de45d37099f6ba865c6cea")
 DATA_GOV_BASE_URL = "https://api.data.gov.in/resource"
 
 
@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
     
     # API Keys
-    data_gov_api_key: str = ""
+    data_gov_api_key: str = "579b464db66ec23bdd00000107b605eca2de45d37099f6ba865c6cea"
     gemini_api_key_1: str = ""
     
     # Server Config
