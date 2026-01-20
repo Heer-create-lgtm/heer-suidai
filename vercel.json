@@ -1,6 +1,16 @@
 {
-    "installCommand": "npm install --legacy-peer-deps",
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
-    "framework": "vite"
+    "version": 2,
+    "builds": [
+        {
+            "src": "server/index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "server/index.js"
+        }
+    ],
+    "installCommand": "cd server && npm install"
 }
